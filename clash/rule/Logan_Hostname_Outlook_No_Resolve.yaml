@@ -1,0 +1,12 @@
+payload:
+  - DOMAIN-SUFFIX,outlook.com
+  - DOMAIN-SUFFIX,office365.com
+  - DOMAIN-SUFFIX,live.com
+  - DOMAIN-SUFFIX,live.cn
+  - DOMAIN-SUFFIX,hotmail.com
+  - DOMAIN-SUFFIX,hotmail.cn
+  - DOMAIN-SUFFIX,outlook.office365.com
+  - DOMAIN-SUFFIX,exchange.microsoft.com
+  - DOMAIN-SUFFIX,mail.protection.outlook.com
+  - DOMAIN-SUFFIX,autodiscover.outlook.com
+  - DOMAIN-SUFFIX,autodiscover-s.outlook.com

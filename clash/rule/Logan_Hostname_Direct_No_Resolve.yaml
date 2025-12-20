@@ -1,0 +1,27 @@
+payload:
+  - DOMAIN,localhost
+  - DOMAIN,ad.12306.cn
+  - DOMAIN,gg.caixin.com
+  - DOMAIN,sdkapp.uve.weibo.com
+  - DOMAIN-SUFFIX,ucweb.com
+  - DOMAIN-SUFFIX,kuwo.cn
+  - DOMAIN-SUFFIX,local
+  - DOMAIN,bitwarden.com
+  - DOMAIN,bitwarden.net
+  - DOMAIN,notifications.bitwarden.com
+  - DOMAIN,api.bitwarden.com
+  - DOMAIN,www.bitwarden.net
+  - DOMAIN-SUFFIX,bitwarden.com
+  - DOMAIN-SUFFIX,bitwarden.net
+  - DOMAIN-KEYWORD,bitwarden
+  - DOMAIN-SUFFIX,dida365.com
+  - DOMAIN,dav.jianguoyun.com
+  - DOMAIN-SUFFIX,jianguoyun.com
+  - DOMAIN-KEYWORD,jianguoyun
+  - DOMAIN-KEYWORD,dav.
+  - DOMAIN,mirrors.ustc.edu.cn
+  - DOMAIN,mirrors.ustc.edu
+  - DOMAIN-KEYWORD,.qq.
+  - DOMAIN-KEYWORD,.wechat.
+  - DOMAIN-KEYWORD,.baidu.
+  - DOMAIN-KEYWORD,.alipay.

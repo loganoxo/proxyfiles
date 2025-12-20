@@ -1,0 +1,4 @@
+payload:
+  - GEOIP,cloudflare
+  - GEOIP,cloudfront
+  - GEOIP,fastly

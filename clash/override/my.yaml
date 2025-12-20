@@ -1,0 +1,1163 @@
+# mihomo 配置,不仅包含my-simple.yaml(代理组和规则),还包含其他配置
+
+# port: 27190        # http(s) 代理端口
+# socks-port: 27191  # socks4/4a/5 代理端口
+
+# HTTP(S) 和 SOCKS 代理混合端口
+mixed-port: 27192
+# 透明代理端口, 仅能代理 TCP 流量, 仅用于 Linux(Android) 和 MacOS
+redir-port: 27193
+# 透明代理端口, 可代理 TCP 与 UDP 流量, 仅用于 linux(Android)
+tproxy-port: 27194
+# true: 允许局域网内其他设备经过 Clash 的代理端口访问互联网
+allow-lan: false
+# 绑定 IP 地址,仅作用于 allow-lan 为 true,'*'表示所有地址
+bind-address: '*'
+# 运行模式:rule,global,direct;默认为规则模式
+mode: rule
+# Clash 内核输出日志的等级,仅在控制台和控制页面输出;silent(不输出),error,warning,info(输出一般运行的内容,以及 error 和 warning 级别的日志),debug
+log-level: info
+# 是否允许内核接受 IPv6 流量; false:阻断所有 IPv6 链接和屏蔽 DNS 请求 AAAA 记录
+ipv6: false
+# 控制是否让 Clash 去匹配进程
+# always 开启,强制匹配所有进程
+# strict 默认,由 Clash 判断是否开启
+# off 不匹配进程,推荐在路由器上使用此模式
+find-process-mode: strict
+# 外部API,可以使用 RESTful API 来控制你的 Clash 内核;你可以将 127.0.0.1 修改为 0.0.0.0 来监听所有 IP
+# external-controller: '127.0.0.1:27199'
+external-controller: '0.0.0.0:27199'
+# API 的访问密钥,在substore中修改
+secret: 'TJtWoHHZDcn3sR7Y'
+# 如果使用的是裸核,将下面的注释去掉,可以直接使用ui界面,使用 http://{{external-controller}}/ui 访问
+# external-ui是静态网页资源存放目录,可以为绝对路径(/path/to/ui/folder),或者 Clash 工作目录的相对路径(ui)
+# external-ui: ui
+# 自定义外部用户界面下载更新地址,三选一
+# external-ui-url: 'https://gh-proxy.com/https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip'
+# external-ui-url: 'https://gh-proxy.com/https://github.com/haishanh/yacd/archive/gh-pages.zip'
+# external-ui-url: 'https://gh-proxy.com/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip'
+profile:
+  store-selected: true
+  # 储存 API 对策略组的选择,以供下次启动时使用
+  store-fake-ip: true
+  # 储存 fakeip 映射表,域名再次发生连接时,使用原有映射地址
+
+# 更换延迟计算方式,去除握手等额外延迟;消除连接握手等带来的不同类型节点的延迟差异
+unified-delay: true
+# 启用 TCP 并发连接,将会使用 dns 解析出的所有 IP 地址进行连接,使用第一个成功的连接
+tcp-concurrent: true
+# 全局 TLS 指纹,优先低于 proxy 内的 client-fingerprint
+global-client-fingerprint: chrome
+
+# 更改 geoip 使用文件,dat 或者 mmdb,可选 true/false,true为 dat,此项有默认值 false
+geodata-mode: true
+# GEO 文件加载模式;standard(标准加载器),memconservative(专为内存受限 (小内存) 设备优化的加载器 (默认值))
+geodata-loader: standard
+# 是否自动更新 geodata
+geo-auto-update: true
+# 更新间隔,单位:小时; 设为一周
+geo-update-interval: 168
+# 自定 GEO 下载地址
+#geox-url:
+#  geoip: "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat"
+#  geosite: "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
+#  mmdb: "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country.mmdb"
+#  asn: "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb"
+geox-url:
+  geoip: 'https://gh-proxy.com/https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat'
+  geosite: 'https://gh-proxy.com/https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat'
+  mmdb: 'https://gh-proxy.com/https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb'
+  #  asn: 'https://gh-proxy.com/https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-ASN.mmdb'
+  asn: 'https://gh-proxy.com/https://raw.githubusercontent.com/Loyalsoldier/geoip/release/GeoLite2-ASN.mmdb'
+
+# 自定全局 UA, 自定义外部资源下载时使用的的 UA,默认为 clash.meta
+global-ua: clash.meta
+# 外部资源下载的 ETag 支持,默认为 true
+etag-support: true
+
+dns:
+  enable: true
+  # 是否解析 IPV6, 如为 false, 则回应 AAAA 的空解析
+  ipv6: false
+  # 配置后面的nameserver、fallback和nameserver-policy向dns服务器的连接过程是否遵守遵守rules规则
+  # 如果为false(默认值)则这三部分的dns服务器在未特别指定的情况下会直连
+  # 如果为true,将会按照rules的规则匹配链接方式(走代理或直连),如果有特别指定则任然以指定值为准
+  # 仅当proxy-server-nameserver非空时可以开启此选项, 强烈不建议和prefer-h3一起使用
+  # 此外,这三者配置中的dns服务器如果出现域名会采用default-nameserver配置项解析,也请确保正确配置default-nameserver
+  respect-rules: true
+  # 如果DNS服务器支持DoH3会优先使用h3,提升性能
+  prefer-h3: false
+  # mihomo 的 DNS 处理模式,可选值 fake-ip/redir-host,默认redir-host
+  enhanced-mode: fake-ip
+  # fakeip 下的 IP 段设置,tun 的默认 IPV4 地址 也使用此值作为参考
+  fake-ip-range: 198.18.0.1/16
+  # 默认blacklist;whitelist 即只有匹配fake-ip-filter成功才返回 fake-ip
+  fake-ip-filter-mode: blacklist
+  # 以下域名列表不会使用 fakeip 映射用于连接
+  fake-ip-filter:
+    - '*.lan'
+    - '*.local'
+    - '*.arpa'
+    - 'time.*.com'
+    - 'ntp.*.com'
+    - '+.market.xiaomi.com'
+    - 'localhost.ptlogin2.qq.com'
+    - '*.msftncsi.com'
+    - 'www.msftconnecttest.com'
+    - 'localhost.sec.qq.com'
+    - 'localhost.work.weixin.qq.com'
+  # 是否回应配置中的 hosts,默认 true
+  use-hosts: true
+  # 允许使用系统的 hosts 文件进行域名解析,默认 true
+  use-system-hosts: true
+  # 用来解析nameserver和fallback里面的 DNS 服务器 的域名;必须为 IP,可为加密 DNS
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+    - 114.114.114.114
+    - system # append DNS server from system configuration. If not found, it would print an error log and skip.
+  # 默认的域名解析服务器;
+  # 匹配到域名规则 -> 域名匹配到直连,需要dns解析 -> 未配置或未匹配到 nameserver-policy -> 使用 nameserver 查询
+  # 未匹配到域名规则,进行到ip的规则匹配时,需要进行dns解析 -> 未配置或未匹配到 nameserver-policy -> 使用 nameserver 查询
+  nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.google/dns-query
+  # 指定域名查询的解析服务器,可使用 geosite, 优先于 nameserver/fallback 查询
+  nameserver-policy:
+    "geosite:cn,private,apple":
+      - https://dns.alidns.com/dns-query
+      - https://doh.pub/dns-query
+    "geosite:category-ads-all": rcode://success
+    "geosite:!cn,!private,!apple":
+      - https://dns.cloudflare.com/dns-query
+      - https://1.1.1.1/dns-query
+      - https://dns.google/dns-query
+      - 'tls://8.8.4.4:853'
+      - "tls://dns.google"
+      - "tls://cloudflare-dns.com"
+  # 用于 direct 出口域名解析的 DNS 服务器,如果不填则遵循 nameserver-policy、nameserver 和 fallback 的配置
+  direct-nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+  # 用于 direct 出口域名解析的 DNS 服务器,如果不填则遵循 nameserver-policy、nameserver 和 fallback 的配置
+  direct-nameserver-follow-policy: false
+  # 专用于代理节点的域名解析的 DNS 服务器,仅用于解析代理节点的域名,非必要配置项,如果不填则遵循nameserver-policy、nameserver和fallback的配置
+  proxy-server-nameserver:
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+    - https://dns.google/dns-query
+  # 后备域名解析服务器筛选,满足条件的将使用 fallback结果或只使用 fallback解析
+  fallback-filter:
+    geoip: true
+    # geoip-code 配置的国家的结果会直接采用,否则将采用 fallback结果
+    geoip-code: CN
+    # geosite 列表的内容被视为已污染,采用 fallback结果
+    geosite:
+      - gfw
+    # 这些网段的结果会被视为污染,nameserver解析出这些结果时将会采用 fallback的解析结果
+    ipcidr:
+      - 240.0.0.0/4
+      - 0.0.0.0/32
+      - 127.0.0.1/32
+    # 这些域名被视为已污染,匹配到这些域名,会直接使用 fallback解析,不去使用 nameserver
+    domain:
+      - '+.google.com'
+      - '+.facebook.com'
+      - '+.youtube.com'
+  # 后备域名解析服务器,一般情况下使用境外 DNS, 保证结果可信
+  # 配置 fallback后默认启用 fallback-filter,geoip-code为 cn
+  fallback:
+    - https://cloudflare-dns.com/dns-query
+    - https://1.1.1.1/dns-query
+    - https://dns.google/dns-query
+    - 'tls://8.8.4.4:853'
+    - "tls://dns.google"
+    - "tls://cloudflare-dns.com"
+
+# tun模式
+tun:
+  # 启用 TUN 模式开关
+  enable: true
+  # 协议栈: 决定如何解析数据包,如无使用问题,建议使用 mixed栈,默认 gvisor
+  # system 使用系统协议栈,可以提供更稳定/全面的 tun 体验,且占用相对其他堆栈更低
+  # gvisor 通过在用户空间中实现网络协议栈,可以提供更高的安全性和隔离性,同时可以避免操作系统内核和用户空间之间的切换,从而在特定情况下具有更好的网络处理性能
+  # mixed 混合堆栈,tcp 使用 system栈,udp 使用 gvisor栈,使用体验可能相对更好
+  # 如果打开了防火墙,则无法使用 system 和 mixed 协议栈,通过以下方式放行内核:
+  # Windows: 设置 -> Windows 安全中心 -> 允许应用通过防火墙 -> 选中内核
+  # MacOS: 一般无需配置,防火墙默认放行签名软件,如果遇到开启防火墙无法使用的情况,可以尝试放行:系统设置 -> 网络 -> 防火墙 -> 选项 -> 添加 mihomo app
+  # Linux: 一般无需配置,防火墙默认不拦截应用,如果遇到开启防火墙无法使用的情况,可以尝试放行 TUN 网卡出站流量(假设 TUN 网卡为 Mihomo): sudo iptables -A OUTPUT -o Mihomo -j ACCEPT
+  stack: mixed
+  # 指定 tun 网卡名称，MacOS 设备只能使用 utun 开头的网卡名
+  device: utun0mihomo
+  # 配置路由表;自动设置全局路由,可以自动将全局流量路由进入 tun 网卡
+  auto-route: true
+  # 严格路由;启用 auto-route 时执行严格的路由规则;它可以防止地址泄漏,并使 DNS 劫持在 Android 上工作;
+  # 将所有连接路由到 tun 来防止泄漏,但你的设备将无法被其他设备访问; 它可能会使某些应用程序(如 VirtualBox)在某些情况下无法正常工作
+  strict-route: false
+  # 自动配置 iptables 以重定向 TCP 连接,需要auto-route已启用;仅支持 Linux;带有 auto-redirect 的 auto-route 现在可以在路由器上按预期工作,无需干预;
+  auto-redirect: true
+  # 自动识别出口网卡;自动选择流量出口接口,多出口网卡同时连接的设备建议手动指定出口网卡
+  auto-detect-interface: true
+  # dns 劫持;将匹配到的连接导入内部 dns 模块,不书写协议则为 udp://
+  # 在 MacOS/Windows 无法自动劫持发往局域网的 dns 请求; 在 Android 如开启 私人dns 则无法自动劫持 dns 请求
+  dns-hijack:
+    - "any:53"
+    - "tcp://any:53"
+  # 最大传输单元,你的网卡一次性最多能运多大的一包数据;会影响极限状态下的速率,一般用户默认即可
+  # 默认 9000, 如果遇到某些网络环境下丢包严重, 可尝试改为 1500
+  mtu: 9000
+  # gso: false # 启用通用分段卸载，仅支持 Linux
+  # gso-max-size: 65536 # 通用分段卸载包的最大大小
+  # disable-icmp-forwarding: true # 禁用 ICMP 转发，防止某些情况下的 ICMP 环回问题，ping 将不会显示真实的延迟
+  #  route-address-set: # 将指定规则集中的目标 IP CIDR 规则添加到防火墙, 不匹配的流量将绕过路由, 仅支持 Linux,且需要 nftables,`auto-route` 和 `auto-redirect` 已启用;
+  #    - ruleset-1
+  #    - ruleset-2
+  #  route-exclude-address-set: # 将指定规则集中的目标 IP CIDR 规则添加到防火墙, 匹配的流量将绕过路由, 仅支持 Linux,且需要 nftables,`auto-route` 和 `auto-redirect` 已启用;
+  #    - ruleset-3
+  #    - ruleset-4
+  #  route-address: # 启用 auto-route 时使用自定义路由而不是默认路由
+  #    - 0.0.0.0/1
+  #    - 128.0.0.0/1
+  #    - "::/1"
+  #    - "8000::/1"
+  # include-package: # 限制被路由的 Android 应用包名
+  # - com.android.chrome
+  # exclude-package: # 排除被路由的 Android 应用包名
+  # - com.android.captiveportallogin
+
+# 域名嗅探
+sniffer:
+  # 启用网络流量嗅探功能,允许 Clash 分析和识别流量类型
+  enable: true
+  # 对 redir-host 类型识别的流量进行强制嗅探
+  force-dns-mapping: true
+  # 对所有未获取到域名的流量进行强制嗅探;专门对付那些不进行 DNS 解析,直接向 IP 发起连接的"流氓”APP(如 Telegram、Netflix 客户端、部分游戏)
+  parse-pure-ip: true
+  # 是否使用嗅探结果作为实际访问,默认 true; 全局配置,优先级低于 sniffer.sniff 实际配置
+  # 如果 Mihomo 发现你发往 123.123.123.123(被污染的 IP)的请求里,SNI 居然是 google.com,它会直接丢弃这个烂 IP,改用 google.com 去匹配规则并交给代理服务器重新解析
+  override-destination: true
+  # 需要嗅探的协议设置,仅支持 HTTP/TLS/QUIC;TLS 和 QUIC 默认如果不配置 ports 默认嗅探 443
+  sniff:
+    HTTP:
+      # 目标服务器的端口,要嗅探的 HTTP 流量端口,包括标准 HTTP 端口 80 和常用的 HTTP 端口范围 8080-8880
+      ports: [ 80, 8080-8880 ]
+      # 可覆盖 sniffer.override-destination
+      override-destination: true
+    TLS:
+      # 目标服务器的端口,要嗅探的 TLS 流量端口,包括标准 HTTPS 端口 443 和常用的备用 HTTPS 端口 8443
+      ports: [ 443, 8443 ]
+    QUIC:
+      # 目标服务器的端口
+      ports: [ 443, 8443 ]
+  # 强制进行嗅探的域名列表
+  force-domain:
+    - +.v2ex.com
+  # 跳过嗅探的域名列表
+  skip-domain:
+    # 米家,智能家居设备通常使用极其精简或私有的协议,或者对连接延迟极其敏感
+    - "Mijia Cloud"
+    # Apple 推送服务,省电与稳定;苹果推送服务的 IP 调度非常复杂,强制重写目标可能会导致手机频繁重连推送服务器,增加耗电或导致消息延迟
+    - "+.push.apple.com"
+  # 跳过嗅探的来源 IP 段列表
+  skip-src-address:
+    - 192.168.0.3/32
+  # 跳过嗅探的目标 IP 段列表
+  skip-dst-address:
+    - 192.168.0.3/32
+
+
+# 类似于 /etc/hosts, 仅支持配置单个 IP
+# hosts:
+# '*.mihomo.dev': 127.0.0.1
+# '.dev': 127.0.0.1
+# 'alpha.mihomo.dev': '::1'
+# test.com: [1.1.1.1, 2.2.2.2]
+# home.lan: lan # lan 为特别字段,将加入本地所有网卡的地址
+# baidu.com: google.com # 只允许配置一个别名
+
+# 多端口设置(入站)
+#listeners:
+#  - name: socks-in-1
+#    type: socks
+#    port: 27181
+#    listen: 0.0.0.0
+#    udp: true
+#    users:
+#      - username: username1
+#        password: password1
+#    proxy: DIRECT
+#
+#  - name: hk
+#    type: mixed
+#    port: 27182
+#    listen: 0.0.0.0
+#    udp: true
+#    proxy: 香港
+#    users:
+#      - username: username1
+#        password: password1
+#
+#  - name: tw
+#    type: mixed
+#    port: 27183
+#    listen: 0.0.0.0
+#    udp: true
+#    proxy: 台湾
+#    users:
+#      - username: username1
+#        password: password1
+
+# 自动同步时间以防止时间不准导致无法正常联网(linux或软路由中使用)
+#ntp:
+#  enable: true
+#  # 是否同步至系统时间,需要 root/管理员权限
+#  write-to-system: false
+#  # 默认 time.apple.com
+#  server: time.apple.com
+#  # NTP 服务端口,默认 123
+#  port: 123
+#  # 同步时间间隔,单位（分）,默认同步间隔为 30 分
+#  interval: 30
+
+#tunnels: # one line config
+#  - tcp/udp,127.0.0.1:6553,114.114.114.114:53,proxy
+#  - tcp,127.0.0.1:6666,rds.mysql.com:3306,vpn
+#  # full yaml config
+#  - network: [ tcp, udp ]
+#    address: 127.0.0.1:7777
+#    target: target.com
+#    proxy: proxy
+
+proxy-groups:
+  - name: 全球加速
+    icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Global.png
+    type: select
+    proxies:
+      - 自动选择
+      - 手动切换
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 美国节点
+      - 韩国节点
+      - DIRECT
+      - REJECT
+  - name: 手动切换
+    icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Available.png
+    include-all: true
+    filter: ^(?=.*(.))(?!.*((?i)zhanwei|群|邀请|返利|循环|官网|官網|用户|重置|套餐|客服|网站|网址|获取|刷新|订阅|剩余|过滤|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|WIKI|USE|USED|TOTAL|EXPIRE|Traffic|EMAIL|Panel)).*$
+    type: select
+  - name: 自动选择
+    icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Bypass.png
+    type: url-test
+    include-all: true
+    filter: ^(?=.*(.))(?!.*((?i)回国|zhanwei|群|邀请|返利|循环|官网|官網|用户|重置|套餐|客服|网站|网址|获取|刷新|订阅|剩余|过滤|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|WIKI|USE|USED|TOTAL|EXPIRE|Traffic|EMAIL|Panel)).*$
+    interval: 3600
+    tolerance: 50
+  - name: 全球直连
+    icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Direct.png
+    type: select
+    proxies:
+      - DIRECT
+      - 全球加速
+      - 自动选择
+      - 手动切换
+      - REJECT
+  - name: 国外AI平台
+    icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Lab.png
+    type: select
+    proxies:
+      - 全球加速
+      - 自动选择
+      - 狮城节点
+      - 香港节点
+      - 台湾节点
+      - 日本节点
+      - 美国节点
+      - 韩国节点
+      - 手动切换
+      - DIRECT
+  - name: 油管视频
+    icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/YouTube.png
+    type: select
+    proxies:
+      - 全球加速
+      - 自动选择
+      - 狮城节点
+      - 香港节点
+      - 台湾节点
+      - 日本节点
+      - 美国节点
+      - 韩国节点
+      - 手动切换
+      - DIRECT
+  - name: Google
+    icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Google_Search.png
+    type: select
+    proxies:
+      - 全球加速
+      - 自动选择
+      - 狮城节点
+      - 香港节点
+      - 台湾节点
+      - 日本节点
+      - 美国节点
+      - 韩国节点
+      - 手动切换
+      - DIRECT
+  - name: Emby
+    icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Emby.png
+    type: select
+    proxies:
+      - 全球加速
+      - 自动选择
+      - 狮城节点
+      - 香港节点
+      - 台湾节点
+      - 日本节点
+      - 美国节点
+      - 韩国节点
+      - 手动切换
+      - DIRECT
+  - name: Spotify
+    icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Spotify.png
+    type: select
+    proxies:
+      - 全球加速
+      - 自动选择
+      - 狮城节点
+      - 香港节点
+      - 台湾节点
+      - 日本节点
+      - 美国节点
+      - 韩国节点
+      - 手动切换
+      - DIRECT
+  - name: Cloudflare
+    icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Cloudflare.png
+    type: select
+    proxies:
+      - 全球加速
+      - 自动选择
+      - 狮城节点
+      - 香港节点
+      - 台湾节点
+      - 日本节点
+      - 美国节点
+      - 韩国节点
+      - 手动切换
+      - DIRECT
+  - name: 漏网之鱼
+    icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Final.png
+    type: select
+    proxies:
+      - 全球加速
+      - 自动选择
+      - DIRECT
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 美国节点
+      - 韩国节点
+      - 手动切换
+      - REJECT
+  - name: 广告拦截
+    icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Advertising.png
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+      - 全球加速
+      - 自动选择
+      - 手动切换
+  - name: 微软服务
+    icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Microsoft.png
+    type: select
+    proxies:
+      - DIRECT
+      - 全球加速
+      - 美国节点
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 韩国节点
+      - 手动切换
+  - name: 苹果服务
+    icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Apple.png
+    type: select
+    proxies:
+      - DIRECT
+      - 全球加速
+      - 美国节点
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 韩国节点
+      - 手动切换
+  - name: 电报消息
+    icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Telegram.png
+    type: select
+    proxies:
+      - 全球加速
+      - 自动选择
+      - 狮城节点
+      - 香港节点
+      - 台湾节点
+      - 日本节点
+      - 美国节点
+      - 韩国节点
+      - 手动切换
+      - DIRECT
+  - name: TikTok
+    icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/TikTok.png
+    type: select
+    proxies:
+      - 全球加速
+      - 自动选择
+      - 狮城节点
+      - 香港节点
+      - 台湾节点
+      - 日本节点
+      - 美国节点
+      - 韩国节点
+      - 手动切换
+      - DIRECT
+  - name: PayPal
+    icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/PayPal.png
+    type: select
+    proxies:
+      - DIRECT
+      - 全球加速
+      - 美国节点
+      - 香港节点
+      - 台湾节点
+      - 狮城节点
+      - 日本节点
+      - 韩国节点
+      - 手动切换
+  - name: 奈飞视频
+    icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Netflix.png
+    type: select
+    proxies:
+      - 全球加速
+      - 自动选择
+      - 奈飞节点
+      - 狮城节点
+      - 香港节点
+      - 台湾节点
+      - 日本节点
+      - 美国节点
+      - 韩国节点
+      - 手动切换
+      - DIRECT
+  - name: Speedtest
+    icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Speedtest.png
+    type: select
+    proxies:
+      - 全球加速
+      - 自动选择
+      - 狮城节点
+      - 香港节点
+      - 台湾节点
+      - 日本节点
+      - 美国节点
+      - 韩国节点
+      - 手动切换
+      - DIRECT
+  - name: 香港节点
+    icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Hong_Kong.png
+    include-all: true
+    filter: ^(?=.*((?i)🇭🇰|香[\s\-_]*港|Hong[\s\-_]*Kong|Xiang[\s\-_]*Gang|香江|九龙|九龍|新界|灣仔|沙田|屯門|荃灣|葵涌|观塘|觀塘|深水埗|黄大仙|大埔|赤鱲角|(\b(HK|HKG)(\d+)?\b)))(?!.*((?i)回国|zhanwei|群|邀请|返利|循环|官网|官網|用户|重置|套餐|客服|网站|网址|获取|刷新|订阅|剩余|过滤|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|WIKI|USE|USED|TOTAL|EXPIRE|Traffic|EMAIL|Panel)).*$
+    type: url-test
+    interval: 3600
+    tolerance: 50
+  - name: 日本节点
+    icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Japan.png
+    include-all: true
+    filter: ^(?=.*((?i)🇯🇵|日[\s\-_]*本|Japan|川日|东京|東京|大阪|泉日|埼玉|沪日|深日|(\b(JP|JPN)(\d+)?\b)))(?!.*((?i)回国|zhanwei|群|邀请|返利|循环|官网|官網|用户|重置|套餐|客服|网站|网址|获取|刷新|订阅|剩余|过滤|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|WIKI|USE|USED|TOTAL|EXPIRE|Traffic|EMAIL|Panel)).*$
+    type: url-test
+    interval: 3600
+    tolerance: 50
+  - name: 美国节点
+    icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/United_States.png
+    include-all: true
+    filter: ^(?=.*((?i)🇺🇸|美[\s\-_]*国|美[\s\-_]*國|United[\s\-_]*States|America|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\b(US|USA)(\d+)?\b)))(?!.*((?i)回国|zhanwei|群|邀请|返利|循环|官网|官網|用户|重置|套餐|客服|网站|网址|获取|刷新|订阅|剩余|过滤|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|WIKI|USE|USED|TOTAL|EXPIRE|Traffic|EMAIL|Panel)).*$
+    type: url-test
+    interval: 3600
+    tolerance: 50
+  - name: 台湾节点
+    icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Taiwan.png
+    include-all: true
+    filter: ^(?=.*((?i)🇹🇼|台[\s\-_]*湾|Tai[\s\-_]*wan|新北|彰化|(\b(TW|TWN|Tai)(\d+)?\b)))(?!.*((?i)回国|zhanwei|群|邀请|返利|循环|官网|官網|用户|重置|套餐|客服|网站|网址|获取|刷新|订阅|剩余|过滤|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|WIKI|USE|USED|TOTAL|EXPIRE|Traffic|EMAIL|Panel)).*$
+    type: url-test
+    interval: 3600
+    tolerance: 50
+  - name: 狮城节点
+    icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Singapore.png
+    include-all: true
+    filter: ^(?=.*((?i)🇸🇬|新加坡|Singapore|狮|坡|(\b(SG|SGP)(\d+)?\b)))(?!.*((?i)回国|zhanwei|群|邀请|返利|循环|官网|官網|用户|重置|套餐|客服|网站|网址|获取|刷新|订阅|剩余|过滤|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|WIKI|USE|USED|TOTAL|EXPIRE|Traffic|EMAIL|Panel)).*$
+    type: url-test
+    interval: 3600
+    tolerance: 50
+  - name: 韩国节点
+    icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Korea.png
+    include-all: true
+    filter: ^(?=.*((?i)🇰🇷|韩[\s\-_]*国|Korea|韓|韩|首[\s\-_]*尔|(\b(KR|KOR)(\d+)?\b)))(?!.*((?i)回国|zhanwei|群|邀请|返利|循环|官网|官網|用户|重置|套餐|客服|网站|网址|获取|刷新|订阅|剩余|过滤|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|WIKI|USE|USED|TOTAL|EXPIRE|Traffic|EMAIL|Panel)).*$
+    type: url-test
+    interval: 3600
+    tolerance: 50
+  - name: 奈飞节点
+    icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Netflix.png
+    include-all: true
+    filter: ^(?=.*((?i)奈飞|Netflix|解锁|Media|(\b(NF)(\d+)?\b)))(?!.*((?i)回国|zhanwei|群|邀请|返利|循环|官网|官網|用户|重置|套餐|客服|网站|网址|获取|刷新|订阅|剩余|过滤|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|WIKI|USE|USED|TOTAL|EXPIRE|Traffic|EMAIL|Panel)).*$
+    type: select
+  - name: GLOBAL
+    icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Proxy.png
+    include-all: true
+    filter: ^(?=.*(.))(?!.*((?i)zhanwei|群|邀请|返利|循环|官网|官網|用户|重置|套餐|客服|网站|网址|获取|刷新|订阅|剩余|过滤|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|WIKI|USE|USED|TOTAL|EXPIRE|Traffic|EMAIL|Panel)).*$
+    type: select
+    proxies:
+      - 全球加速
+      - 手动切换
+      - 自动选择
+      - 全球直连
+      - 国外AI平台
+      - 油管视频
+      - Google
+      - Emby
+      - Spotify
+      - Cloudflare
+      - 漏网之鱼
+      - 广告拦截
+      - 微软服务
+      - 苹果服务
+      - 电报消息
+      - TikTok
+      - PayPal
+      - 奈飞视频
+      - Speedtest
+      - 香港节点
+      - 日本节点
+      - 美国节点
+      - 台湾节点
+      - 狮城节点
+      - 韩国节点
+      - 奈飞节点
+
+rule-providers:
+  UnBan:
+    type: http
+    path: ./ruleset/UnBan.list
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: text
+  BanAD:
+    type: http
+    path: ./ruleset/BanAD.list
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: text
+  BanProgramAD:
+    type: http
+    path: ./ruleset/BanProgramAD.list
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: text
+  AdvertisingLite_Classical:
+    type: http
+    path: ./ruleset/AdvertisingLite_Classical_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AdvertisingLite/AdvertisingLite_Classical_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  GoogleFCM:
+    type: http
+    path: ./ruleset/GoogleFCM.list
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: text
+  GoogleCN:
+    type: http
+    path: ./ruleset/GoogleCN.list
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/GoogleCN.list
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: text
+  Direct:
+    type: http
+    path: ./ruleset/Direct_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Direct/Direct_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  AliPay:
+    type: http
+    path: ./ruleset/AliPay_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AliPay/AliPay_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  JianGuoYun:
+    type: http
+    path: ./ruleset/JianGuoYun_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/JianGuoYun/JianGuoYun_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  WeChat:
+    type: http
+    path: ./ruleset/WeChat_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/WeChat/WeChat_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  Tencent_Classical:
+    type: http
+    path: ./ruleset/Tencent_Classical_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Tencent/Tencent_Classical_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  12306:
+    type: http
+    path: ./ruleset/12306_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/12306/12306_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  CMB:
+    type: http
+    path: ./ruleset/CMB_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/CMB/CMB_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  ICBC:
+    type: http
+    path: ./ruleset/ICBC_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ICBC/ICBC_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  BOCOM:
+    type: http
+    path: ./ruleset/BOCOM_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BOCOM/BOCOM_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  BOC:
+    type: http
+    path: ./ruleset/BOC_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BOC/BOC_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  CCB:
+    type: http
+    path: ./ruleset/CCB_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/CCB/CCB_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  CEB:
+    type: http
+    path: ./ruleset/CEB_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/CEB/CEB_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  CGB:
+    type: http
+    path: ./ruleset/CGB_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/CGB/CGB_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  ChinaTelecom:
+    type: http
+    path: ./ruleset/ChinaTelecom_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaTelecom/ChinaTelecom_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  ChinaUnicom:
+    type: http
+    path: ./ruleset/ChinaUnicom_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaUnicom/ChinaUnicom_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  ChinaMobile:
+    type: http
+    path: ./ruleset/ChinaMobile_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMobile/ChinaMobile_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  Apple_Classical:
+    type: http
+    path: ./ruleset/Apple_Classical_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple_Classical_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  AppleID:
+    type: http
+    path: ./ruleset/AppleID_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AppleID/AppleID_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  AppleDev:
+    type: http
+    path: ./ruleset/AppleDev_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AppleDev/AppleDev_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  SystemOTA:
+    type: http
+    path: ./ruleset/SystemOTA_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/SystemOTA/SystemOTA_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  Microsoft:
+    type: http
+    path: ./ruleset/Microsoft_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  OpenAI:
+    type: http
+    path: ./ruleset/OpenAI_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  BardAI:
+    type: http
+    path: ./ruleset/BardAI_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BardAI/BardAI_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  Claude:
+    type: http
+    path: ./ruleset/Claude_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Claude/Claude_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  Gemini:
+    type: http
+    path: ./ruleset/Gemini_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Gemini/Gemini_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  Copilot:
+    type: http
+    path: ./ruleset/Copilot_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Copilot/Copilot_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  YouTube:
+    type: http
+    path: ./ruleset/YouTube_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  Telegram:
+    type: http
+    path: ./ruleset/Telegram_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  TikTok:
+    type: http
+    path: ./ruleset/TikTok_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/TikTok/TikTok_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  PayPal:
+    type: http
+    path: ./ruleset/PayPal_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PayPal/PayPal_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  Steam:
+    type: http
+    path: ./ruleset/Steam_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Steam/Steam_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  Google:
+    type: http
+    path: ./ruleset/Google_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  Logan_Hostname_Emby:
+    type: http
+    path: ./ruleset/Logan_Hostname_Emby_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_Hostname_Emby_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  Logan_Hostname_Direct:
+    type: http
+    path: ./ruleset/Logan_Hostname_Direct_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_Hostname_Direct_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  Logan_Vps:
+    type: http
+    path: ./ruleset/Logan_Vps_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_Vps_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  Logan_Hostname_Reject:
+    type: http
+    path: ./ruleset/Logan_Hostname_Reject_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_Hostname_Reject_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  Logan_Hostname_Proxy:
+    type: http
+    path: ./ruleset/Logan_Hostname_Proxy_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_Hostname_Proxy_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  Logan_Hostname_Outlook:
+    type: http
+    path: ./ruleset/Logan_Hostname_Outlook_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_Hostname_Outlook_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  Logan_Filter_Lan:
+    type: http
+    path: ./ruleset/Logan_Filter_Lan_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_Filter_Lan_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  Logan_Filter_Cdn:
+    type: http
+    path: ./ruleset/Logan_Filter_Cdn_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_Filter_Cdn_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  Logan_End_Reject:
+    type: http
+    path: ./ruleset/Logan_End_Reject_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_End_Reject_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  Cloudflarecn:
+    type: http
+    path: ./ruleset/Cloudflarecn_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Cloudflarecn/Cloudflarecn_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  Cloudflare:
+    type: http
+    path: ./ruleset/Cloudflare_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Cloudflare/Cloudflare_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  Spotify:
+    type: http
+    path: ./ruleset/Spotify_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Spotify/Spotify_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  Netflix_Classical:
+    type: http
+    path: ./ruleset/Netflix_Classical_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Netflix/Netflix_Classical_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  Speedtest:
+    type: http
+    path: ./ruleset/Speedtest_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Speedtest/Speedtest_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  ChinaMedia:
+    type: http
+    path: ./ruleset/ChinaMedia_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMedia/ChinaMedia_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  China_Classical:
+    type: http
+    path: ./ruleset/China_Classical_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/China/China_Classical_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  GlobalMedia_Classical:
+    type: http
+    path: ./ruleset/GlobalMedia_Classical_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GlobalMedia/GlobalMedia_Classical_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  Global_Classical:
+    type: http
+    path: ./ruleset/Global_Classical_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Global/Global_Classical_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+
+rules:
+  - "RULE-SET,Logan_Vps,全球直连"
+  - "RULE-SET,Logan_Hostname_Direct,全球直连"
+  - "RULE-SET,Logan_Hostname_Reject,广告拦截"
+  - "RULE-SET,Logan_Hostname_Proxy,全球加速"
+  - "RULE-SET,Logan_Hostname_Emby,Emby"
+  - "RULE-SET,UnBan,全球直连"
+  - "RULE-SET,BanAD,广告拦截"
+  - "RULE-SET,BanProgramAD,广告拦截"
+  - "RULE-SET,AdvertisingLite_Classical,广告拦截"
+  - "RULE-SET,Cloudflarecn,全球直连"
+  - "RULE-SET,Cloudflare,Cloudflare"
+  - "RULE-SET,GoogleFCM,全球直连"
+  - "RULE-SET,GoogleCN,全球直连"
+  - "RULE-SET,Direct,全球直连"
+  - "RULE-SET,AliPay,全球直连"
+  - "RULE-SET,JianGuoYun,全球直连"
+  - "RULE-SET,WeChat,全球直连"
+  - "RULE-SET,Tencent_Classical,全球直连"
+  - "RULE-SET,12306,全球直连"
+  - "RULE-SET,CMB,全球直连"
+  - "RULE-SET,ICBC,全球直连"
+  - "RULE-SET,BOCOM,全球直连"
+  - "RULE-SET,BOC,全球直连"
+  - "RULE-SET,CCB,全球直连"
+  - "RULE-SET,CEB,全球直连"
+  - "RULE-SET,CGB,全球直连"
+  - "RULE-SET,ChinaTelecom,全球直连"
+  - "RULE-SET,ChinaUnicom,全球直连"
+  - "RULE-SET,ChinaMobile,全球直连"
+  - "RULE-SET,Apple_Classical,苹果服务"
+  - "RULE-SET,AppleID,苹果服务"
+  - "RULE-SET,AppleDev,苹果服务"
+  - "RULE-SET,SystemOTA,苹果服务"
+  - "RULE-SET,OpenAI,国外AI平台"
+  - "RULE-SET,BardAI,国外AI平台"
+  - "RULE-SET,Claude,国外AI平台"
+  - "RULE-SET,Gemini,国外AI平台"
+  - "RULE-SET,Copilot,国外AI平台"
+  - "RULE-SET,Microsoft,微软服务"
+  - "RULE-SET,Logan_Hostname_Outlook,微软服务"
+  - "RULE-SET,YouTube,油管视频"
+  - "RULE-SET,Telegram,电报消息"
+  - "RULE-SET,TikTok,TikTok"
+  - "RULE-SET,PayPal,PayPal"
+  - "RULE-SET,Steam,全球加速"
+  - "RULE-SET,Google,Google"
+  - "RULE-SET,Spotify,Spotify"
+  - "RULE-SET,Netflix_Classical,奈飞视频"
+  - "RULE-SET,Speedtest,Speedtest"
+  - "RULE-SET,ChinaMedia,全球直连"
+  - "RULE-SET,China_Classical,全球直连"
+  - "RULE-SET,GlobalMedia_Classical,全球加速"
+  - "RULE-SET,Global_Classical,全球加速"
+  - "RULE-SET,Logan_Filter_Lan,全球直连"
+  - "RULE-SET,Logan_Filter_Cdn,Cloudflare"
+  - "GEOIP,private,全球直连"
+  - "GEOIP,cn,全球直连"
+  - "RULE-SET,Logan_End_Reject,广告拦截"
+  - "MATCH,漏网之鱼"
