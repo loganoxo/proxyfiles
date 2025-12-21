@@ -1,0 +1,9 @@
+payload:
+  - DOMAIN,timestamp.apple.com
+  - DOMAIN,sequoia.apple.com
+  - DOMAIN,seed-sequoia.siri.apple.com
+  - DOMAIN,captive.apple.com
+  - DOMAIN,appleid.cdn-apple.com
+  - DOMAIN-KEYWORD,cdn-apple
+  - DOMAIN-SUFFIX,apple.com
+  - DOMAIN-KEYWORD,apple.
