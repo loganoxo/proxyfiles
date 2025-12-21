@@ -1,2 +1,3 @@
 payload:
   - IP-CIDR,35.209.0.0/16,no-resolve
+  - DOMAIN-WILDCARD,ssh-*.alwaysdata.net
