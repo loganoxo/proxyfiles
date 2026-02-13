@@ -1,5 +1,0 @@
-payload:
-  - DOMAIN,e.crashlytics.com
-  # 屏蔽443端口的udp的国外流量
-  - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOSITE,cn)))
-  - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOIP,CN)))

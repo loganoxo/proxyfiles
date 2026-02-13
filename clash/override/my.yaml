@@ -466,7 +466,7 @@ proxy-groups:
       - 韩国节点
       - 手动切换
       - REJECT
-  - name: 广告拦截
+  - name: 全球拦截
     icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Advertising.png
     type: select
     proxies:
@@ -635,7 +635,7 @@ proxy-groups:
       - Spotify
       - Cloudflare
       - 漏网之鱼
-      - 广告拦截
+      - 全球拦截
       - 微软服务
       - 苹果服务
       - 电报消息
@@ -684,10 +684,10 @@ rule-providers:
     proxy: DIRECT
     behavior: classical
     format: yaml
-  01_Logan_Hostname_Reject:
+  01_Logan_Reject:
     type: http
-    path: ./ruleset/01_Logan_Hostname_Reject_No_Resolve.yaml
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_Hostname_Reject_No_Resolve.yaml
+    path: ./ruleset/01_Logan_Reject_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_Reject_No_Resolve.yaml
     interval: 86400
     proxy: DIRECT
     behavior: classical
@@ -720,14 +720,6 @@ rule-providers:
     type: http
     path: ./ruleset/01_Logan_Filter_Cdn_No_Resolve.yaml
     url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_Filter_Cdn_No_Resolve.yaml
-    interval: 86400
-    proxy: DIRECT
-    behavior: classical
-    format: yaml
-  01_Logan_End_Reject:
-    type: http
-    path: ./ruleset/01_Logan_End_Reject_No_Resolve.yaml
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_End_Reject_No_Resolve.yaml
     interval: 86400
     proxy: DIRECT
     behavior: classical
@@ -1113,13 +1105,13 @@ rules:
   - "RULE-SET,00_Logan_Vps,全球直连"
   - "RULE-SET,01_Logan_Hostname_Apple,苹果服务"
   - "RULE-SET,01_Logan_Hostname_Direct,全球直连"
-  - "RULE-SET,01_Logan_Hostname_Reject,广告拦截"
+  - "RULE-SET,01_Logan_Reject,全球拦截"
   - "RULE-SET,01_Logan_Hostname_Proxy,全球加速"
   - "RULE-SET,01_Logan_Hostname_Emby,Emby"
   - "RULE-SET,UnBan,全球直连"
-  - "RULE-SET,BanAD,广告拦截"
-  - "RULE-SET,BanProgramAD,广告拦截"
-  - "RULE-SET,AdvertisingLite_Classical,广告拦截"
+  - "RULE-SET,BanAD,全球拦截"
+  - "RULE-SET,BanProgramAD,全球拦截"
+  - "RULE-SET,AdvertisingLite_Classical,全球拦截"
   - "RULE-SET,Cloudflarecn,全球直连"
   - "RULE-SET,Cloudflare,Cloudflare"
   - "RULE-SET,GoogleFCM,全球直连"
@@ -1168,5 +1160,4 @@ rules:
   - "RULE-SET,01_Logan_Filter_Cdn,Cloudflare"
   - "GEOIP,private,全球直连"
   - "GEOIP,cn,全球直连"
-  - "RULE-SET,01_Logan_End_Reject,广告拦截"
   - "MATCH,漏网之鱼"
