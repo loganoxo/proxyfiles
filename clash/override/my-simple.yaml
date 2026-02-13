@@ -105,7 +105,7 @@ proxy-groups:
       - 韩国节点
       - 手动切换
       - DIRECT
-  - name: Cloudflare
+  - name: CDN
     icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Cloudflare.png
     type: select
     proxies:
@@ -134,7 +134,7 @@ proxy-groups:
       - 韩国节点
       - 手动切换
       - REJECT
-  - name: 广告拦截
+  - name: 全球拦截
     icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Advertising.png
     type: select
     proxies:
@@ -301,9 +301,9 @@ proxy-groups:
       - Google
       - Emby
       - Spotify
-      - Cloudflare
+      - CDN
       - 漏网之鱼
-      - 广告拦截
+      - 全球拦截
       - 微软服务
       - 苹果服务
       - 电报消息
@@ -328,50 +328,50 @@ rule-providers:
     proxy: DIRECT
     behavior: classical
     format: yaml
-  01_Logan_Hostname_Emby:
+  01_Logan_Emby:
     type: http
-    path: ./ruleset/01_Logan_Hostname_Emby_No_Resolve.yaml
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_Hostname_Emby_No_Resolve.yaml
+    path: ./ruleset/01_Logan_Emby_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_Emby_No_Resolve.yaml
     interval: 86400
     proxy: DIRECT
     behavior: classical
     format: yaml
-  01_Logan_Hostname_Direct:
+  01_Logan_Direct:
     type: http
-    path: ./ruleset/01_Logan_Hostname_Direct_No_Resolve.yaml
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_Hostname_Direct_No_Resolve.yaml
+    path: ./ruleset/01_Logan_Direct_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_Direct_No_Resolve.yaml
     interval: 86400
     proxy: DIRECT
     behavior: classical
     format: yaml
-  01_Logan_Hostname_Apple:
+  01_Logan_Apple:
     type: http
-    path: ./ruleset/01_Logan_Hostname_Apple_No_Resolve.yaml
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_Hostname_Apple_No_Resolve.yaml
+    path: ./ruleset/01_Logan_Apple_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_Apple_No_Resolve.yaml
     interval: 86400
     proxy: DIRECT
     behavior: classical
     format: yaml
-  01_Logan_Hostname_Reject:
+  01_Logan_Reject:
     type: http
-    path: ./ruleset/01_Logan_Hostname_Reject_No_Resolve.yaml
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_Hostname_Reject_No_Resolve.yaml
+    path: ./ruleset/01_Logan_Reject_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_Reject_No_Resolve.yaml
     interval: 86400
     proxy: DIRECT
     behavior: classical
     format: yaml
-  01_Logan_Hostname_Proxy:
+  01_Logan_Proxy:
     type: http
-    path: ./ruleset/01_Logan_Hostname_Proxy_No_Resolve.yaml
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_Hostname_Proxy_No_Resolve.yaml
+    path: ./ruleset/01_Logan_Proxy_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_Proxy_No_Resolve.yaml
     interval: 86400
     proxy: DIRECT
     behavior: classical
     format: yaml
-  01_Logan_Hostname_Outlook:
+  01_Logan_Outlook:
     type: http
-    path: ./ruleset/01_Logan_Hostname_Outlook_No_Resolve.yaml
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_Hostname_Outlook_No_Resolve.yaml
+    path: ./ruleset/01_Logan_Outlook_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_Outlook_No_Resolve.yaml
     interval: 86400
     proxy: DIRECT
     behavior: classical
@@ -384,18 +384,18 @@ rule-providers:
     proxy: DIRECT
     behavior: classical
     format: yaml
-  01_Logan_Filter_Cdn:
+  01_Logan_Cdn:
     type: http
-    path: ./ruleset/01_Logan_Filter_Cdn_No_Resolve.yaml
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_Filter_Cdn_No_Resolve.yaml
+    path: ./ruleset/01_Logan_Cdn_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_Cdn_No_Resolve.yaml
     interval: 86400
     proxy: DIRECT
     behavior: classical
     format: yaml
-  01_Logan_End_Reject:
+  01_Logan_Ai:
     type: http
-    path: ./ruleset/01_Logan_End_Reject_No_Resolve.yaml
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_End_Reject_No_Resolve.yaml
+    path: ./ruleset/01_Logan_Ai_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_Ai_No_Resolve.yaml
     interval: 86400
     proxy: DIRECT
     behavior: classical
@@ -778,18 +778,20 @@ rule-providers:
     format: yaml
 
 rules:
+  - "RULE-SET,01_Logan_Filter_Lan,全球直连"
   - "RULE-SET,00_Logan_Vps,全球直连"
-  - "RULE-SET,01_Logan_Hostname_Apple,苹果服务"
-  - "RULE-SET,01_Logan_Hostname_Direct,全球直连"
-  - "RULE-SET,01_Logan_Hostname_Reject,广告拦截"
-  - "RULE-SET,01_Logan_Hostname_Proxy,全球加速"
-  - "RULE-SET,01_Logan_Hostname_Emby,Emby"
+  - "RULE-SET,01_Logan_Apple,苹果服务"
+  - "RULE-SET,01_Logan_Direct,全球直连"
+  - "RULE-SET,01_Logan_Reject,全球拦截"
+  - "RULE-SET,01_Logan_Proxy,全球加速"
+  - "RULE-SET,01_Logan_Emby,Emby"
   - "RULE-SET,UnBan,全球直连"
-  - "RULE-SET,BanAD,广告拦截"
-  - "RULE-SET,BanProgramAD,广告拦截"
-  - "RULE-SET,AdvertisingLite_Classical,广告拦截"
+  - "RULE-SET,BanAD,全球拦截"
+  - "RULE-SET,BanProgramAD,全球拦截"
+  - "RULE-SET,AdvertisingLite_Classical,全球拦截"
   - "RULE-SET,Cloudflarecn,全球直连"
-  - "RULE-SET,Cloudflare,Cloudflare"
+  - "RULE-SET,Cloudflare,CDN"
+  - "RULE-SET,01_Logan_Cdn,CDN"
   - "RULE-SET,GoogleFCM,全球直连"
   - "RULE-SET,GoogleCN,全球直连"
   - "RULE-SET,Direct,全球直连"
@@ -817,8 +819,9 @@ rules:
   - "RULE-SET,Claude,国外AI平台"
   - "RULE-SET,Gemini,国外AI平台"
   - "RULE-SET,Copilot,国外AI平台"
+  - "RULE-SET,01_Logan_Ai,国外AI平台"
   - "RULE-SET,Microsoft,微软服务"
-  - "RULE-SET,01_Logan_Hostname_Outlook,微软服务"
+  - "RULE-SET,01_Logan_Outlook,微软服务"
   - "RULE-SET,YouTube,油管视频"
   - "RULE-SET,Telegram,电报消息"
   - "RULE-SET,TikTok,TikTok"
@@ -832,9 +835,6 @@ rules:
   - "RULE-SET,China_Classical,全球直连"
   - "RULE-SET,GlobalMedia_Classical,全球加速"
   - "RULE-SET,Global_Classical,全球加速"
-  - "RULE-SET,01_Logan_Filter_Lan,全球直连"
-  - "RULE-SET,01_Logan_Filter_Cdn,Cloudflare"
   - "GEOIP,private,全球直连"
   - "GEOIP,cn,全球直连"
-  - "RULE-SET,01_Logan_End_Reject,广告拦截"
   - "MATCH,漏网之鱼"
