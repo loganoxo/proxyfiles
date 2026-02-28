@@ -760,38 +760,38 @@ rule-providers:
     proxy: DIRECT
     behavior: classical
     format: yaml
-  UnBan:
-    type: http
-    path: ./ruleset/UnBan.list
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list
-    interval: 86400
-    proxy: DIRECT
-    behavior: classical
-    format: text
-  BanAD:
-    type: http
-    path: ./ruleset/BanAD.list
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
-    interval: 86400
-    proxy: DIRECT
-    behavior: classical
-    format: text
-  BanProgramAD:
-    type: http
-    path: ./ruleset/BanProgramAD.list
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list
-    interval: 86400
-    proxy: DIRECT
-    behavior: classical
-    format: text
-  AdvertisingLite_Classical:
-    type: http
-    path: ./ruleset/AdvertisingLite_Classical_No_Resolve.yaml
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AdvertisingLite/AdvertisingLite_Classical_No_Resolve.yaml
-    interval: 86400
-    proxy: DIRECT
-    behavior: classical
-    format: yaml
+#  UnBan:
+#    type: http
+#    path: ./ruleset/UnBan.list
+#    url: https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list
+#    interval: 86400
+#    proxy: DIRECT
+#    behavior: classical
+#    format: text
+#  BanAD:
+#    type: http
+#    path: ./ruleset/BanAD.list
+#    url: https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
+#    interval: 86400
+#    proxy: DIRECT
+#    behavior: classical
+#    format: text
+#  BanProgramAD:
+#    type: http
+#    path: ./ruleset/BanProgramAD.list
+#    url: https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list
+#    interval: 86400
+#    proxy: DIRECT
+#    behavior: classical
+#    format: text
+#  AdvertisingLite_Classical:
+#    type: http
+#    path: ./ruleset/AdvertisingLite_Classical_No_Resolve.yaml
+#    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AdvertisingLite/AdvertisingLite_Classical_No_Resolve.yaml
+#    interval: 86400
+#    proxy: DIRECT
+#    behavior: classical
+#    format: yaml
   GoogleFCM:
     type: http
     path: ./ruleset/GoogleFCM.list
@@ -1145,10 +1145,10 @@ rules:
   - "RULE-SET,01_Logan_Reject,全球拦截"
   - "RULE-SET,01_Logan_Proxy,全球加速"
   - "RULE-SET,01_Logan_Emby,Emby"
-  - "RULE-SET,UnBan,全球直连"
-  - "RULE-SET,BanAD,全球拦截"
-  - "RULE-SET,BanProgramAD,全球拦截"
-  - "RULE-SET,AdvertisingLite_Classical,全球拦截"
+#  - "RULE-SET,UnBan,全球直连"
+#  - "RULE-SET,BanAD,全球拦截"
+#  - "RULE-SET,BanProgramAD,全球拦截"
+#  - "RULE-SET,AdvertisingLite_Classical,全球拦截"
   - "RULE-SET,Cloudflarecn,全球直连"
   - "RULE-SET,Cloudflare,CDN"
   - "RULE-SET,01_Logan_Cdn,CDN"

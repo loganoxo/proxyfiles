@@ -1,5 +1,6 @@
 payload:
   - DOMAIN-SUFFIX,1357810.xyz
+  - DOMAIN-SUFFIX,jsdelivr.net
   - GEOIP,cloudflare
   - GEOIP,cloudfront
   - GEOIP,fastly
