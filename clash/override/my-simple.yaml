@@ -24,8 +24,12 @@ proxy-groups:
     type: url-test
     include-all: true
     filter: ^(?=.*(.))(?!.*((?i)回国|zhanwei|群|邀请|返利|循环|官网|官網|用户|重置|套餐|客服|网站|网址|获取|刷新|订阅|剩余|过滤|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|WIKI|USE|USED|TOTAL|EXPIRE|Traffic|EMAIL|Panel)).*$
-    interval: 3600
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 300
     tolerance: 50
+    lazy: true
+    timeout: 2000
+    max-failed-times: 5
   - name: 全球直连
     icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Direct.png
     type: select
@@ -244,43 +248,67 @@ proxy-groups:
     include-all: true
     filter: ^(?=.*((?i)🇭🇰|香[\s\-_]*港|Hong[\s\-_]*Kong|Xiang[\s\-_]*Gang|香江|九龙|九龍|新界|灣仔|沙田|屯門|荃灣|葵涌|观塘|觀塘|深水埗|黄大仙|大埔|赤鱲角|(\b(HK|HKG)(\d+)?\b)))(?!.*((?i)回国|zhanwei|群|邀请|返利|循环|官网|官網|用户|重置|套餐|客服|网站|网址|获取|刷新|订阅|剩余|过滤|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|WIKI|USE|USED|TOTAL|EXPIRE|Traffic|EMAIL|Panel)).*$
     type: url-test
-    interval: 3600
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 300
     tolerance: 50
+    lazy: true
+    timeout: 2000
+    max-failed-times: 5
   - name: 日本节点
     icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Japan.png
     include-all: true
     filter: ^(?=.*((?i)🇯🇵|日[\s\-_]*本|Japan|川日|东京|東京|大阪|泉日|埼玉|沪日|深日|(\b(JP|JPN)(\d+)?\b)))(?!.*((?i)回国|zhanwei|群|邀请|返利|循环|官网|官網|用户|重置|套餐|客服|网站|网址|获取|刷新|订阅|剩余|过滤|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|WIKI|USE|USED|TOTAL|EXPIRE|Traffic|EMAIL|Panel)).*$
     type: url-test
-    interval: 3600
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 300
     tolerance: 50
+    lazy: true
+    timeout: 2000
+    max-failed-times: 5
   - name: 美国节点
     icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/United_States.png
     include-all: true
     filter: ^(?=.*((?i)🇺🇸|美[\s\-_]*国|美[\s\-_]*國|United[\s\-_]*States|America|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\b(US|USA)(\d+)?\b)))(?!.*((?i)回国|zhanwei|群|邀请|返利|循环|官网|官網|用户|重置|套餐|客服|网站|网址|获取|刷新|订阅|剩余|过滤|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|WIKI|USE|USED|TOTAL|EXPIRE|Traffic|EMAIL|Panel)).*$
     type: url-test
-    interval: 3600
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 300
     tolerance: 50
+    lazy: true
+    timeout: 2000
+    max-failed-times: 5
   - name: 台湾节点
     icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Taiwan.png
     include-all: true
     filter: ^(?=.*((?i)🇹🇼|台[\s\-_]*湾|Tai[\s\-_]*wan|新北|彰化|(\b(TW|TWN|Tai)(\d+)?\b)))(?!.*((?i)回国|zhanwei|群|邀请|返利|循环|官网|官網|用户|重置|套餐|客服|网站|网址|获取|刷新|订阅|剩余|过滤|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|WIKI|USE|USED|TOTAL|EXPIRE|Traffic|EMAIL|Panel)).*$
     type: url-test
-    interval: 3600
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 300
     tolerance: 50
+    lazy: true
+    timeout: 2000
+    max-failed-times: 5
   - name: 狮城节点
     icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Singapore.png
     include-all: true
     filter: ^(?=.*((?i)🇸🇬|新加坡|Singapore|狮|坡|(\b(SG|SGP)(\d+)?\b)))(?!.*((?i)回国|zhanwei|群|邀请|返利|循环|官网|官網|用户|重置|套餐|客服|网站|网址|获取|刷新|订阅|剩余|过滤|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|WIKI|USE|USED|TOTAL|EXPIRE|Traffic|EMAIL|Panel)).*$
     type: url-test
-    interval: 3600
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 300
     tolerance: 50
+    lazy: true
+    timeout: 2000
+    max-failed-times: 5
   - name: 韩国节点
     icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Korea.png
     include-all: true
     filter: ^(?=.*((?i)🇰🇷|韩[\s\-_]*国|Korea|韓|韩|首[\s\-_]*尔|(\b(KR|KOR)(\d+)?\b)))(?!.*((?i)回国|zhanwei|群|邀请|返利|循环|官网|官網|用户|重置|套餐|客服|网站|网址|获取|刷新|订阅|剩余|过滤|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|WIKI|USE|USED|TOTAL|EXPIRE|Traffic|EMAIL|Panel)).*$
     type: url-test
-    interval: 3600
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 300
     tolerance: 50
+    lazy: true
+    timeout: 2000
+    max-failed-times: 5
   - name: 奈飞节点
     icon: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/Qure/master/IconSet/Color/Netflix.png
     include-all: true
