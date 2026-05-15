@@ -680,9 +680,9 @@ proxy-groups:
       - 奈飞节点
 
 rule-providers:
-  00_Logan_Vps:
+  01_Logan_Vps:
     type: http
-    path: ./ruleset/00_Logan_Vps_No_Resolve.yaml
+    path: ./ruleset/01_Logan_Vps_No_Resolve.yaml
     url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_Vps_No_Resolve.yaml
     interval: 86400
     proxy: DIRECT
@@ -738,8 +738,16 @@ rule-providers:
     format: yaml
   01_Logan_Filter_Lan:
     type: http
-    path: ./ruleset/01_Logan_Filter_Lan_Resolve.yaml
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_Filter_Lan_Resolve.yaml
+    path: ./ruleset/01_Logan_Filter_Lan_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/proxyfiles/master/clash/rule/Logan_Filter_Lan_No_Resolve.yaml
+    interval: 86400
+    proxy: DIRECT
+    behavior: classical
+    format: yaml
+  Lan:
+    type: http
+    path: ./ruleset/Lan_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Lan/Lan_No_Resolve.yaml
     interval: 86400
     proxy: DIRECT
     behavior: classical
@@ -1139,22 +1147,13 @@ rule-providers:
 
 rules:
   - "RULE-SET,01_Logan_Filter_Lan,全球直连"
-  - "RULE-SET,00_Logan_Vps,全球直连"
-  - "RULE-SET,01_Logan_Apple,苹果服务"
+  - "RULE-SET,Lan,全球直连"
   - "RULE-SET,01_Logan_Direct,全球直连"
+  - "RULE-SET,01_Logan_Vps,全球直连"
+  - "RULE-SET,01_Logan_Apple,苹果服务"
   - "RULE-SET,01_Logan_Reject,全球拦截"
   - "RULE-SET,01_Logan_Proxy,全球加速"
   - "RULE-SET,01_Logan_Emby,Emby"
-  #  - "RULE-SET,UnBan,全球直连"
-  #  - "RULE-SET,BanAD,全球拦截"
-  #  - "RULE-SET,BanProgramAD,全球拦截"
-  #  - "RULE-SET,AdvertisingLite_Classical,全球拦截"
-  - "RULE-SET,Cloudflarecn,全球直连"
-  - "RULE-SET,Cloudflare,CDN"
-  - "RULE-SET,01_Logan_Cdn,CDN"
-  #  - "RULE-SET,GoogleFCM,全球直连"
-  #  - "RULE-SET,GoogleCN,全球直连"
-  #  - "RULE-SET,Direct,全球直连"
   - "RULE-SET,AliPay,全球直连"
   - "RULE-SET,JianGuoYun,全球直连"
   - "RULE-SET,WeChat,全球直连"
@@ -1180,21 +1179,31 @@ rules:
   - "RULE-SET,Gemini,国外AI平台"
   - "RULE-SET,Copilot,国外AI平台"
   - "RULE-SET,01_Logan_Ai,国外AI平台"
+  #  - "RULE-SET,UnBan,全球直连"
+  #  - "RULE-SET,BanAD,全球拦截"
+  #  - "RULE-SET,BanProgramAD,全球拦截"
+  #  - "RULE-SET,AdvertisingLite_Classical,全球拦截"
+  #  - "RULE-SET,GoogleFCM,全球直连"
+  #  - "RULE-SET,GoogleCN,全球直连"
+  #  - "RULE-SET,Direct,全球直连"
   - "RULE-SET,Microsoft,微软服务"
   - "RULE-SET,01_Logan_Outlook,微软服务"
   - "RULE-SET,YouTube,油管视频"
-  - "RULE-SET,Telegram,电报消息"
-  - "RULE-SET,TikTok,TikTok"
-  - "RULE-SET,PayPal,PayPal"
-  - "RULE-SET,Steam,全球加速"
   - "RULE-SET,Google,Google"
+  - "RULE-SET,PayPal,PayPal"
+  - "RULE-SET,TikTok,TikTok"
+  - "RULE-SET,Telegram,电报消息"
   - "RULE-SET,Spotify,Spotify"
+  - "RULE-SET,Steam,全球加速"
   - "RULE-SET,Netflix_Classical,奈飞视频"
   - "RULE-SET,Speedtest,Speedtest"
+  - "RULE-SET,Cloudflarecn,全球直连"
+  - "RULE-SET,Cloudflare,CDN"
   - "RULE-SET,ChinaMedia,全球直连"
   - "RULE-SET,China_Classical,全球直连"
   - "RULE-SET,GlobalMedia_Classical,全球加速"
   - "RULE-SET,Global_Classical,全球加速"
   - "GEOIP,private,全球直连"
+  - "RULE-SET,01_Logan_Cdn,CDN"
   - "GEOIP,cn,全球直连"
   - "MATCH,漏网之鱼"
