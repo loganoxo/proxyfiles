@@ -1,4 +1,7 @@
 payload:
   - IP-CIDR,35.209.0.0/16,no-resolve
+  - IP-CIDR,167.160.0.0/16,no-resolve
+  - IP-CIDR,47.131.0.0/16,no-resolve
+  - IP-CIDR,54.248.0.0/16,no-resolve
   - DOMAIN-WILDCARD,ssh-*.alwaysdata.net
   - DOMAIN-WILDCARD,worker-*.dsx-air.nvidia.com
