@@ -652,46 +652,14 @@ rule-providers:
     proxy: DIRECT
     behavior: classical
     format: yaml
-  OpenAI:
+  AI:
     type: http
-    path: ./ruleset/OpenAI_No_Resolve.yaml
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI_No_Resolve.yaml
+    path: ./ruleset/AI_No_Resolve.yaml
+    url: https://gh-proxy.com/https://raw.githubusercontent.com/loganoxo/thisrule/master/rule/AI/Clash/AI.list
     interval: 86400
     proxy: DIRECT
     behavior: classical
-    format: yaml
-  BardAI:
-    type: http
-    path: ./ruleset/BardAI_No_Resolve.yaml
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BardAI/BardAI_No_Resolve.yaml
-    interval: 86400
-    proxy: DIRECT
-    behavior: classical
-    format: yaml
-  Claude:
-    type: http
-    path: ./ruleset/Claude_No_Resolve.yaml
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Claude/Claude_No_Resolve.yaml
-    interval: 86400
-    proxy: DIRECT
-    behavior: classical
-    format: yaml
-  Gemini:
-    type: http
-    path: ./ruleset/Gemini_No_Resolve.yaml
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Gemini/Gemini_No_Resolve.yaml
-    interval: 86400
-    proxy: DIRECT
-    behavior: classical
-    format: yaml
-  Copilot:
-    type: http
-    path: ./ruleset/Copilot_No_Resolve.yaml
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Copilot/Copilot_No_Resolve.yaml
-    interval: 86400
-    proxy: DIRECT
-    behavior: classical
-    format: yaml
+    format: text
   YouTube:
     type: http
     path: ./ruleset/YouTube_No_Resolve.yaml
@@ -736,14 +704,6 @@ rule-providers:
     type: http
     path: ./ruleset/Google_No_Resolve.yaml
     url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google_No_Resolve.yaml
-    interval: 86400
-    proxy: DIRECT
-    behavior: classical
-    format: yaml
-  Cloudflarecn:
-    type: http
-    path: ./ruleset/Cloudflarecn_No_Resolve.yaml
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Cloudflarecn/Cloudflarecn_No_Resolve.yaml
     interval: 86400
     proxy: DIRECT
     behavior: classical
@@ -822,6 +782,7 @@ rules:
   - "RULE-SET,01_Logan_Reject,全球拦截"
   - "RULE-SET,01_Logan_Proxy,全球加速"
   - "RULE-SET,01_Logan_Emby,Emby"
+  - "DOMAIN-SUFFIX,cloudflare.com,CDN"
   - "RULE-SET,AliPay,全球直连"
   - "RULE-SET,JianGuoYun,全球直连"
   - "RULE-SET,WeChat,全球直连"
@@ -841,11 +802,8 @@ rules:
   - "RULE-SET,AppleID,苹果服务"
   - "RULE-SET,AppleDev,苹果服务"
   - "RULE-SET,SystemOTA,苹果服务"
-  - "RULE-SET,OpenAI,国外AI平台"
-  - "RULE-SET,BardAI,国外AI平台"
-  - "RULE-SET,Claude,国外AI平台"
-  - "RULE-SET,Gemini,国外AI平台"
-  - "RULE-SET,Copilot,国外AI平台"
+  - "RULE-SET,PayPal,PayPal"
+  - "RULE-SET,AI,国外AI平台"
   - "RULE-SET,01_Logan_Ai,国外AI平台"
   #  - "RULE-SET,UnBan,全球直连"
   #  - "RULE-SET,BanAD,全球拦截"
@@ -858,14 +816,12 @@ rules:
   - "RULE-SET,01_Logan_Outlook,微软服务"
   - "RULE-SET,YouTube,油管视频"
   - "RULE-SET,Google,Google"
-  - "RULE-SET,PayPal,PayPal"
   - "RULE-SET,TikTok,TikTok"
   - "RULE-SET,Telegram,电报消息"
   - "RULE-SET,Spotify,Spotify"
   - "RULE-SET,Steam,全球加速"
   - "RULE-SET,Netflix_Classical,奈飞视频"
   - "RULE-SET,Speedtest,Speedtest"
-  - "RULE-SET,Cloudflarecn,全球直连"
   - "RULE-SET,Cloudflare,CDN"
   - "RULE-SET,ChinaMedia,全球直连"
   - "RULE-SET,China_Classical,全球直连"
