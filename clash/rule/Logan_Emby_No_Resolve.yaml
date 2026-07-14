@@ -9,4 +9,9 @@ payload:
   - DOMAIN-SUFFIX,stentvessel.xyz
   - DOMAIN-SUFFIX,nijigem.by
   - DOMAIN-SUFFIX,bangumi.ca
+  - DOMAIN-SUFFIX,emby.moe
+  - DOMAIN-SUFFIX,xxlb.net
+  - DOMAIN-SUFFIX,loseremby.org
+  - DOMAIN-SUFFIX,zabc.net
+  - IP-CIDR,154.12.52.149/25,no-resolve
   - PROCESS-NAME,com.mb.android
