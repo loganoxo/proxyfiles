@@ -14,4 +14,5 @@ payload:
   - DOMAIN-SUFFIX,loseremby.org
   - DOMAIN-SUFFIX,zabc.net
   - IP-CIDR,154.12.52.149/25,no-resolve
+  - DOMAIN-SUFFIX,inemby.us.ci
   - PROCESS-NAME,com.mb.android
